@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div *ngIf="!hideForm">
+      <h2>Add new fruit</h2>
+      <form #form="ngForm" (ngSubmit)="addFruitOnSubmit(form.value)" class="well">
+        <div>
+          <label>Name</label>
+          <input type="text" class="form-control" required name="name" ngModel>
+        </div>
+        <div>
+            <label>Image URL</label>
+            <input type="text" class="form-control" required name="imageUrl" ngModel>
+        </div>
+        <div>
+            <label>Price (₹/Kg)</label>
+            <input type="text" class="form-control" required name="price" ngModel>
+        </div>
+        <button type="submit" class="btn btn-success">Add</button>
+      </form>
+    </div>
+    <fruit-detail
+      *ngIf="selectedFruit && hideForm"
+      [fruit]="selectedFruit"
+      (updateFruitEvent)="onUpdatefruitEvent($event)"
+      (deleteFruitevent)="onDeleteFruitevent($event)">
+    </fruit-detail>
+  </div>
+  <div class="col-sm-3">
+    <button (click)="hideForm=!hideForm" style="margin-bottom:2px" type="button" class="btn btn-success btn-block">+ Fruit</button>
+    <fruit-list
+      (SelectFruit)="onFruitSelection($event)"
+      [fruits]="fruits">
+    </fruit-list>
+  </div>
+</div>

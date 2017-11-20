@@ -1,0 +1,32 @@
+<div *ngIf="!updateMode">
+    <form>
+        <div class="form-group">
+            <h3>{{fruit.name}}</h3>
+        </div>
+        <div class="form-group img-container">
+            <img [src]="fruit.imageUrl" alt="Image not found">
+        </div>
+        <div class="form-group">
+            <h4> ₹ {{fruit.price}}/Kg</h4>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="updateMode">
+    <form>
+        <div class="form-group">
+            <label>Name of the fruit:</label>
+            <input type="text" [(ngModel)]="fruit.name" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+            <label>URL to the fruit image:</label>
+            <input type="text" [(ngModel)]="fruit.imageUrl" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+            <label>Price (in rupees/Kg):</label>
+            <input type="number" [(ngModel)]="fruit.price" [ngModelOptions]="{standalone: true}">
+        </div>
+    </form>
+</div>
+<button type="button" class="btn btn-success" (click)="updateFruit()">Update</button>
+<button type="button" class="btn btn-danger" (click)="deleteFruit()">Delete</button>
